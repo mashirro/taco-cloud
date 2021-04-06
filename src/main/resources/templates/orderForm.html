@@ -1,0 +1,63 @@
+<!-- tag::allButValidation[] -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Taco Cloud</title>
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+  </head>
+
+  <body>
+
+    <form method="POST" th:action="@{/orders}" th:object="${order}">
+      <h1>订购您的Taco!</h1>
+
+      <img th:src="@{/images/TacoCloud.png}"/>
+      <a th:href="@{/design}" id="another">设计另一个taco</a><br/>
+
+      <div th:if="${#fields.hasErrors()}">
+        <span class="validationError">
+        请更正以下问题并重新提交。
+        </span>
+      </div>
+
+      <h3>将我的Taco卷饼送到...</h3>
+      <label for="name">姓名: </label>
+      <input type="text" th:field="*{name}"/>
+      <br/>
+
+      <label for="street">街道地址: </label>
+      <input type="text" th:field="*{street}"/>
+      <br/>
+
+      <label for="city">城市: </label>
+      <input type="text" th:field="*{city}"/>
+      <br/>
+
+      <label for="state">状态: </label>
+      <input type="text" th:field="*{state}"/>
+      <br/>
+
+      <label for="zip">邮政编码: </label>
+      <input type="text" th:field="*{zip}"/>
+      <br/>
+
+      <h3>这是我要付款的方式...</h3>
+      <label for="ccNumber">信用卡 #: </label>
+      <input type="text" th:field="*{ccNumber}"/>
+      <br/>
+
+      <label for="ccExpiration">到期日: </label>
+      <input type="text" th:field="*{ccExpiration}"/>
+      <br/>
+
+      <label for="ccCVV">CVV: </label>
+      <input type="text" th:field="*{ccCVV}"/>
+      <br/>
+
+      <input type="submit" value="Submit order"/>
+    </form>
+
+  </body>
+</html>
+
