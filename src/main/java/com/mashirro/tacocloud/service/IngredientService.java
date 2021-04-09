@@ -1,29 +1,24 @@
-package com.mashirro.tacocloud.controller;
+package com.mashirro.tacocloud.service;
+
 
 import com.mashirro.tacocloud.entity.Ingredient;
 import com.mashirro.tacocloud.entity.Type;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.stereotype.Service;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 
-@Controller
-@RequestMapping("/test")
-public class JdbcController {
+@Service
+public class IngredientService {
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    @GetMapping("/list")
-    @ResponseBody
-    public List<Ingredient> getList() {
+    public List<Ingredient> findAll() {
         String sqlString = "select * from ingredient";
         //写法一:
 //        List<Ingredient> list = jdbcTemplate.query(sqlString, new RowMapper<Ingredient>() {
@@ -43,16 +38,14 @@ public class JdbcController {
         return list;
     }
 
-
     private Ingredient mapRowToIngredient(ResultSet rs, int rowNum) throws SQLException {
         return new Ingredient(rs.getString("id"),
                 rs.getString("name"),
                 Type.valueOf(rs.getString("type")));
     }
 
-    @GetMapping("/getOne/{id}")
-    @ResponseBody
-    public Ingredient getOne(@PathVariable("id") String id) {
+
+    public Ingredient findOne(String id) {
         String sqlString = "select * from ingredient where id = ? ";
         /**
          * 使用queryForObject的注意点:
@@ -66,11 +59,9 @@ public class JdbcController {
         return entity;
     }
 
-    @GetMapping("/getCount")
-    @ResponseBody
-    public String getCount() {
+    public Integer getTotalCount() {
         String sqlString = "select count(*) from ingredient";
         Integer count = jdbcTemplate.queryForObject(sqlString, Integer.class);
-        return "总数为" + count;
+        return count;
     }
 }

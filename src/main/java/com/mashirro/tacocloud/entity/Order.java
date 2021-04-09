@@ -1,6 +1,8 @@
 package com.mashirro.tacocloud.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 订单
@@ -26,6 +28,13 @@ public class Order {
     private String ccCVV;
 
     private Date createTime;
+
+    //一对多
+    private List<Taco> tacos = new ArrayList<>();
+
+    public void addDesign(Taco design) {
+        this.tacos.add(design);
+    }
 
     public Order() {
     }
@@ -121,5 +130,13 @@ public class Order {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    public List<Taco> getTacos() {
+        return tacos;
+    }
+
+    public void setTacos(List<Taco> tacos) {
+        this.tacos = tacos;
     }
 }

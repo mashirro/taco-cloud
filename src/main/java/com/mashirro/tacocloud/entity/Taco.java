@@ -50,4 +50,12 @@ public class Taco {
   public void setCreateTime(Date createTime) {
     this.createTime = createTime;
   }
+
+  public List<String> getIngredients() {
+    return ingredients;
+  }
+
+  public void setIngredients(List<String> ingredients) {
+    this.ingredients = ingredients;
+  }
 }

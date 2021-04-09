@@ -15,12 +15,6 @@
       <img th:src="@{/images/TacoCloud.png}"/>
       <a th:href="@{/design}" id="another">设计另一个taco</a><br/>
 
-      <div th:if="${#fields.hasErrors()}">
-        <span class="validationError">
-        请更正以下问题并重新提交。
-        </span>
-      </div>
-
       <h3>将我的Taco卷饼送到...</h3>
       <label for="name">姓名: </label>
       <input type="text" th:field="*{name}"/>
