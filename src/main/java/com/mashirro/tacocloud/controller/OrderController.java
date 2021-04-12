@@ -32,7 +32,7 @@ public class OrderController {
         //订单保存完成之后,我们就不需要再session中持有它了
         //实际上如果我们不把它清理掉,那么订单就会继续保留在session中,其中包括与之关联的taco,下一次的订单将会从旧订单保存的taco开始
         //所以processOrder方法请求了一个sessionStatus参数并调用了它的setComplete方法重置session
-        //sessionStatus.setComplete();
+        sessionStatus.setComplete();
         return "redirect:/";
     }
 }
