@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class User implements UserDetails{
+public class UserInfo implements UserDetails{
     private String id;
 
     private String username;
@@ -112,6 +112,20 @@ public class User implements UserDetails{
     }
 
     public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public UserInfo() {
+    }
+
+    public UserInfo(String id, String username, String password, String street, String city, String state, String zip, String phoneNumber) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.street = street;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
         this.phoneNumber = phoneNumber;
     }
 }

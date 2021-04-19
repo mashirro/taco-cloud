@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50527
 File Encoding         : 65001
 
-Date: 2021-04-09 17:47:51
+Date: 2021-04-16 11:31:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,9 +52,6 @@ CREATE TABLE `order_tacos` (
 -- ----------------------------
 -- Records of order_tacos
 -- ----------------------------
-INSERT INTO `order_tacos` VALUES ('061d69bd-8db9-49f9-a9e2-edf9a16a1113', '491a6468-4f38-4281-82cf-a18846263d7b');
-INSERT INTO `order_tacos` VALUES ('441d032f-7e02-4196-a3d2-ae16b8016e6c', '491a6468-4f38-4281-82cf-a18846263d7b');
-INSERT INTO `order_tacos` VALUES ('441d032f-7e02-4196-a3d2-ae16b8016e6c', '91eb515e-c28a-470d-adfb-1b0bb59e9aff');
 
 -- ----------------------------
 -- Table structure for taco
@@ -70,9 +67,6 @@ CREATE TABLE `taco` (
 -- ----------------------------
 -- Records of taco
 -- ----------------------------
-INSERT INTO `taco` VALUES ('491a6468-4f38-4281-82cf-a18846263d7b', 'mashirro', '2021-04-09 17:34:02');
-INSERT INTO `taco` VALUES ('91eb515e-c28a-470d-adfb-1b0bb59e9aff', 'mashirro007', '2021-04-09 17:36:48');
-INSERT INTO `taco` VALUES ('c3aec134-f157-4c24-8692-b22bb4cca093', 'mashirro', '2021-04-09 15:53:05');
 
 -- ----------------------------
 -- Table structure for tacoorder
@@ -95,9 +89,6 @@ CREATE TABLE `tacoorder` (
 -- ----------------------------
 -- Records of tacoorder
 -- ----------------------------
-INSERT INTO `tacoorder` VALUES ('061d69bd-8db9-49f9-a9e2-edf9a16a1113', '陈先生', '陈加敦', '成都', '', '400213', '', '', '', '2021-04-09 17:34:35');
-INSERT INTO `tacoorder` VALUES ('441d032f-7e02-4196-a3d2-ae16b8016e6c', '陈先生2号', '陈加敦', '成都', '', '400213', '', '', '', '2021-04-09 17:37:14');
-INSERT INTO `tacoorder` VALUES ('8afcbfd7-7719-45b4-8fa4-1c5bd5686e20', '陈先生', '陈加敦', '成都', '', '400213', '', '', '', '2021-04-09 16:09:19');
 
 -- ----------------------------
 -- Table structure for taco_ingredients
@@ -111,6 +102,25 @@ CREATE TABLE `taco_ingredients` (
 -- ----------------------------
 -- Records of taco_ingredients
 -- ----------------------------
-INSERT INTO `taco_ingredients` VALUES ('c3aec134-f157-4c24-8692-b22bb4cca093', 'COTO');
-INSERT INTO `taco_ingredients` VALUES ('491a6468-4f38-4281-82cf-a18846263d7b', 'COTO');
-INSERT INTO `taco_ingredients` VALUES ('91eb515e-c28a-470d-adfb-1b0bb59e9aff', 'CARN');
+
+-- ----------------------------
+-- Table structure for user
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` varchar(38) NOT NULL COMMENT '主键',
+  `username` varchar(50) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `street` varchar(255) DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `state` varchar(2) DEFAULT NULL,
+  `zip` varchar(10) DEFAULT NULL,
+  `phoneNumber` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户表';
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES ('1', 'mashirro', '$2a$10$ZHrVFer2MV.jp1osOpslP.n4p46XFbWBFRu9fdSkUIPl5mh0T60R.', '陈加敦', '武汉', null, null, '1862790275');
+INSERT INTO `user` VALUES ('e84d1ece-0072-407d-9707-84fb6dabc065', 'mashirro007', '$2a$10$1M58P6geG6N1f4WM46LJtehGR.ts87YlGF2dF6QAKq/RLcJIaZYl2', '陈加敦', '成都', '', '400213', null);

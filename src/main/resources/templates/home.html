@@ -8,5 +8,12 @@
 <body>
     <h3>欢迎...</h3>
     <img th:src="@{/images/TacoCloud.png}" />
+
+
+    <form method="POST" th:action="@{/logout}" id="logoutForm">
+        <input type="submit" value="登出"/>
+    </form>
+
+    <a th:href="@{/design}" id="design">设计一个taco</a>
 </body>
 </html>

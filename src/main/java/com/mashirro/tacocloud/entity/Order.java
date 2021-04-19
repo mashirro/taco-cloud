@@ -32,6 +32,9 @@ public class Order {
     //一对多
     private List<Taco> tacos = new ArrayList<>();
 
+    //订单所属用户
+    private UserInfo userInfo;
+
     public void addDesign(Taco design) {
         this.tacos.add(design);
     }
@@ -138,5 +141,13 @@ public class Order {
 
     public void setTacos(List<Taco> tacos) {
         this.tacos = tacos;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
     }
 }

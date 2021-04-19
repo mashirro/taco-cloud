@@ -9,11 +9,19 @@
 
   <body>
 
-    <form method="POST" th:action="@{/orders}" th:object="${order}">
+    <form method="POST" th:action="@{/logout}" id="logoutForm">
+      <input type="submit" value="登出"/>
+    </form>
+
+    <form method="POST" th:action="@{/orders}" th:object="${order}" id="orderForm">
       <h1>订购您的Taco!</h1>
 
       <img th:src="@{/images/TacoCloud.png}"/>
+      <h3>您订单中的tacos:</h3>
       <a th:href="@{/design}" id="another">设计另一个taco</a><br/>
+      <ul>
+        <li th:each="taco : ${order.tacos}"><span th:text="${taco.name}">taco name</span></li>
+      </ul>
 
       <h3>将我的Taco卷饼送到...</h3>
       <label for="name">姓名: </label>
@@ -49,7 +57,7 @@
       <input type="text" th:field="*{ccCVV}"/>
       <br/>
 
-      <input type="submit" value="Submit order"/>
+      <input type="submit" value="提交订单"/>
     </form>
 
   </body>

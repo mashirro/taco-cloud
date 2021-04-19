@@ -4,16 +4,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>墨西哥卷饼Taco</title>
+    <title>Taco Cloud</title>
     <link rel="stylesheet" th:href="@{/styles.css}"/>
 </head>
 
 <body>
 <h1>设计您的Taco!</h1>
+<h2>Feelin' hungry, <span th:text="${user.username}">NAME</span>?</h2>
 <img th:src="@{/images/TacoCloud.png}"/>
 
+<form method="POST" th:action="@{/logout}" id="logoutForm">
+    <input type="submit" value="登出"/>
+</form>
+
 <!-- tag::formTag[] -->
-<form method="POST" th:object="${design}">
+<form method="POST" th:object="${design}" th:action="@{/design}" id="tacoForm">
     <div class="grid">
         <!-- end::formTag[] -->
         <!-- end::head[] -->
