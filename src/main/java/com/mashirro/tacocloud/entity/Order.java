@@ -150,4 +150,20 @@ public class Order {
     public void setUserInfo(UserInfo userInfo) {
         this.userInfo = userInfo;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                ", ccNumber='" + ccNumber + '\'' +
+                ", ccExpiration='" + ccExpiration + '\'' +
+                ", ccCVV='" + ccCVV + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
 }

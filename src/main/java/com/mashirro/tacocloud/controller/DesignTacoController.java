@@ -4,17 +4,14 @@ import com.mashirro.tacocloud.entity.*;
 import com.mashirro.tacocloud.repository.UserInfoMapper;
 import com.mashirro.tacocloud.service.IngredientService;
 import com.mashirro.tacocloud.service.TacoService;
-import com.mashirro.tacocloud.service.UserInfoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.jws.soap.SOAPBinding;
 import java.security.Principal;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +21,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/design")
 @SessionAttributes("order")
 public class DesignTacoController {
+    private final static Logger logger = LoggerFactory.getLogger(DesignTacoController.class);
+
     @Autowired
     private IngredientService ingredientService;
     @Autowired
@@ -33,7 +32,7 @@ public class DesignTacoController {
 
     @ModelAttribute("design")
     public Taco taco() {
-        System.out.println("taco()方法执行了...");
+        logger.debug("taco()方法执行了...");
         return new Taco();
     }
 
@@ -67,6 +66,7 @@ public class DesignTacoController {
 //    }
     @PostMapping
     public String processDesign(Taco taco, Model model, @AuthenticationPrincipal UserInfo userInfo) {
+        logger.info("Taco submitted: " + taco);
         Taco save = tacoService.save(taco);
         Order order = new Order();
         order.addDesign(save);

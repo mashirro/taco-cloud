@@ -128,4 +128,18 @@ public class UserInfo implements UserDetails{
         this.zip = zip;
         this.phoneNumber = phoneNumber;
     }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", street='" + street + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                '}';
+    }
 }

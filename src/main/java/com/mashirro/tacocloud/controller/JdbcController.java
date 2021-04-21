@@ -2,6 +2,8 @@ package com.mashirro.tacocloud.controller;
 
 import com.mashirro.tacocloud.entity.Ingredient;
 import com.mashirro.tacocloud.entity.Type;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -10,14 +12,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Controller
 @RequestMapping("/test")
 public class JdbcController {
+    private final static Logger logger = LoggerFactory.getLogger(JdbcController.class);
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -39,7 +45,14 @@ public class JdbcController {
 //        });
 
         //写法二:
-        List<Ingredient> list = jdbcTemplate.query(sqlString, this::mapRowToIngredient);
+        List<Ingredient> list = new ArrayList<>();
+        try {
+            int a = 1 / 0;
+            list = jdbcTemplate.query(sqlString, this::mapRowToIngredient);
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error(e.getMessage());
+        }
         return list;
     }
 

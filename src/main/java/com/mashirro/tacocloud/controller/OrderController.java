@@ -3,6 +3,8 @@ package com.mashirro.tacocloud.controller;
 
 import com.mashirro.tacocloud.entity.Order;
 import com.mashirro.tacocloud.service.OrderService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.support.SessionStatus;
 @SessionAttributes("order")
 public class OrderController {
 
+    private final static Logger logger = LoggerFactory.getLogger(OrderController.class);
+
     @Autowired
     private OrderService orderService;
 
@@ -27,7 +31,7 @@ public class OrderController {
 
     @PostMapping
     public String processOrder(Order order, SessionStatus sessionStatus) {
-        //log.info("Order submitted: " + order);
+        logger.info("Order submitted: " + order);
         orderService.save(order);
         //订单保存完成之后,我们就不需要再session中持有它了
         //实际上如果我们不把它清理掉,那么订单就会继续保留在session中,其中包括与之关联的taco,下一次的订单将会从旧订单保存的taco开始
