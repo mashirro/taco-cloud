@@ -11,15 +11,15 @@ public class Order {
 
     private String id;
 
-    private String name;
+    private String deliveryName;
 
-    private String street;
+    private String deliveryStreet;
 
-    private String city;
+    private String deliveryCity;
 
-    private String state;
+    private String deliveryState;
 
-    private String zip;
+    private String deliveryZip;
 
     private String ccNumber;
 
@@ -42,13 +42,13 @@ public class Order {
     public Order() {
     }
 
-    public Order(String id, String name, String street, String city, String state, String zip, String ccNumber, String ccExpiration, String ccCVV, Date createTime) {
+    public Order(String id, String deliveryName, String deliveryStreet, String deliveryCity, String deliveryState, String deliveryZip, String ccNumber, String ccExpiration, String ccCVV, Date createTime) {
         this.id = id;
-        this.name = name;
-        this.street = street;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
+        this.deliveryName = deliveryName;
+        this.deliveryStreet = deliveryStreet;
+        this.deliveryCity = deliveryCity;
+        this.deliveryState = deliveryState;
+        this.deliveryZip = deliveryZip;
         this.ccNumber = ccNumber;
         this.ccExpiration = ccExpiration;
         this.ccCVV = ccCVV;
@@ -63,44 +63,44 @@ public class Order {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDeliveryName() {
+        return deliveryName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDeliveryName(String deliveryName) {
+        this.deliveryName = deliveryName;
     }
 
-    public String getStreet() {
-        return street;
+    public String getDeliveryStreet() {
+        return deliveryStreet;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setDeliveryStreet(String deliveryStreet) {
+        this.deliveryStreet = deliveryStreet;
     }
 
-    public String getCity() {
-        return city;
+    public String getDeliveryCity() {
+        return deliveryCity;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setDeliveryCity(String deliveryCity) {
+        this.deliveryCity = deliveryCity;
     }
 
-    public String getState() {
-        return state;
+    public String getDeliveryState() {
+        return deliveryState;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setDeliveryState(String deliveryState) {
+        this.deliveryState = deliveryState;
     }
 
-    public String getZip() {
-        return zip;
+    public String getDeliveryZip() {
+        return deliveryZip;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
+    public void setDeliveryZip(String deliveryZip) {
+        this.deliveryZip = deliveryZip;
     }
 
     public String getCcNumber() {
@@ -139,31 +139,29 @@ public class Order {
         return tacos;
     }
 
-    public void setTacos(List<Taco> tacos) {
-        this.tacos = tacos;
-    }
-
-    public UserInfo getUserInfo() {
-        return userInfo;
-    }
-
     public void setUserInfo(UserInfo userInfo) {
         this.userInfo = userInfo;
+    }
+
+    public void setTacos(List<Taco> tacos) {
+        this.tacos = tacos;
     }
 
     @Override
     public String toString() {
         return "Order{" +
                 "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zip='" + zip + '\'' +
+                ", deliveryName='" + deliveryName + '\'' +
+                ", deliveryStreet='" + deliveryStreet + '\'' +
+                ", deliveryCity='" + deliveryCity + '\'' +
+                ", deliveryState='" + deliveryState + '\'' +
+                ", deliveryZip='" + deliveryZip + '\'' +
                 ", ccNumber='" + ccNumber + '\'' +
                 ", ccExpiration='" + ccExpiration + '\'' +
                 ", ccCVV='" + ccCVV + '\'' +
                 ", createTime=" + createTime +
+                ", tacos=" + tacos +
+                ", userInfo=" + userInfo +
                 '}';
     }
 }

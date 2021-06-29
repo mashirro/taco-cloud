@@ -1,17 +1,22 @@
 package com.mashirro.tacocloud.controller;
 
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mashirro.tacocloud.entity.Order;
 import com.mashirro.tacocloud.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+
+import java.util.List;
 
 
 @Controller
@@ -38,5 +43,21 @@ public class OrderController {
         //所以processOrder方法请求了一个sessionStatus参数并调用了它的setComplete方法重置session
         sessionStatus.setComplete();
         return "redirect:/";
+    }
+
+
+    /**
+     * 展示所有订单!(分页展示)
+     *
+     * @return
+     */
+    @GetMapping
+    public String ordersForAll(Model model) {
+        //分页
+        PageHelper.startPage(0, 1);
+        List<Order> allOrders = orderService.findAllOrders();
+        PageInfo<Order> userOrderPage = new PageInfo<>(allOrders);
+        model.addAttribute("orders", userOrderPage.getList());
+        return "orderList";
     }
 }
