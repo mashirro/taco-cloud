@@ -4,6 +4,7 @@ package com.mashirro.tacocloud.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.mashirro.tacocloud.entity.Order;
+import com.mashirro.tacocloud.entity.OrderProps;
 import com.mashirro.tacocloud.service.OrderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +29,9 @@ public class OrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private OrderProps orderProps;
 
     @GetMapping("/current")
     public String orderForm() {
@@ -54,7 +58,8 @@ public class OrderController {
     @GetMapping
     public String ordersForAll(Model model) {
         //分页
-        PageHelper.startPage(0, 1);
+        //PageHelper.startPage(0, 1);
+        PageHelper.startPage(0, orderProps.getPageSize());
         List<Order> allOrders = orderService.findAllOrders();
         PageInfo<Order> userOrderPage = new PageInfo<>(allOrders);
         model.addAttribute("orders", userOrderPage.getList());
